@@ -1,8 +1,14 @@
-
-.g-signin2{
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -50px;
-    margin-left: -50px;
-}
+/* Your styles go here */
+body {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Center the Google Sign-In button */
+  .g-signin2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    margin-top: 20px;
+  }
+  /* Your styles go here */
