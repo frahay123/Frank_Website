@@ -27,6 +27,11 @@
         .g-signin2 {
             margin-top: 20px;
         }
+        .greeting {
+            margin-top: 20px;
+            font-size: 20px;
+            color: green;
+        }
     </style>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
@@ -38,7 +43,7 @@
 
         <!-- Google Sign-In button -->
         <div id="g_id_onload"
-             data-client_id="YOUR_GOOGLE_CLIENT_ID"
+             data-client_id="18205523567-9bbvcafd2cc4c13nnb3336sntspmuogd.apps.googleusercontent.com"
              data-login_uri="https://your-backend.com/oauth2callback"
              data-auto_prompt="false">
         </div>
@@ -50,13 +55,32 @@
              data-shape="rectangular" 
              data-logo_alignment="left">
         </div>
+        
+        <!-- Greeting Message -->
+        <div id="greeting" class="greeting"></div>
     </div>
 
     <script>
         // Google Sign-In success callback
         function handleCredentialResponse(response) {
             console.log("Encoded JWT ID token: " + response.credential);
-            // You can send this token to your server for verification
+
+            // Decode the JWT token to extract user information
+            const userObject = parseJwt(response.credential);
+
+            // Update the UI to greet the user by name
+            document.getElementById('greeting').textContent = "Hello, " + userObject.name + "! You are logged in.";
+        }
+
+        // Function to decode the JWT token
+        function parseJwt(token) {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+
+            return JSON.parse(jsonPayload);
         }
 
         window.onload = function () {
