@@ -43,11 +43,11 @@
 
         <!-- Google Sign-In button -->
         <div id="g_id_onload"
-             data-client_id="18205523567-9bbvcafd2cc4c13nnb3336sntspmuogd.apps.googleusercontent.com"
+             data-client_id="YOUR_GOOGLE_CLIENT_ID"
              data-login_uri="https://your-backend.com/oauth2callback"
              data-auto_prompt="false">
         </div>
-        <div class="g_id_signin" 
+        <div id="signin-button" class="g_id_signin" 
              data-type="standard" 
              data-size="large" 
              data-theme="outline" 
@@ -70,6 +70,9 @@
 
             // Update the UI to greet the user by name
             document.getElementById('greeting').textContent = "Hello, " + userObject.name + "! You are logged in.";
+
+            // Hide the Google Sign-In button
+            document.getElementById('signin-button').style.display = 'none';
         }
 
         // Function to decode the JWT token
