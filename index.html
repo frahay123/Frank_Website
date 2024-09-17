@@ -3,17 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frank Hayden Leo's Portfolio</title>
+    <title>Frank's Website</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
             background-color: #f4f4f4;
-            flex-direction: column;
+        }
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .signin {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 0;
+            cursor: pointer;
+            border-radius: 5px;
         }
         .container {
             text-align: center;
@@ -22,13 +42,10 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 800px;
-            width: 100%;
+            margin: 60px auto;
         }
         h1 {
             color: #333;
-        }
-        .g-signin2 {
-            margin-top: 20px;
         }
         .greeting {
             margin-top: 20px;
@@ -75,24 +92,15 @@
 </head>
 <body>
 
-    <div class="container">
-        <h1>Welcome to [Your Name]'s Portfolio</h1>
-        <p>Sign in with Google to view my resume and projects.</p>
+    <!-- Navbar with sign-in option -->
+    <div class="navbar">
+        <h1>Frank's Website</h1>
+        <button id="signin-button" class="signin">Sign In with Google</button>
+    </div>
 
-        <!-- Google Sign-In button -->
-        <div id="g_id_onload"
-             data-client_id="YOUR_GOOGLE_CLIENT_ID"
-             data-login_uri="https://your-backend.com/oauth2callback"
-             data-auto_prompt="false">
-        </div>
-        <div id="signin-button" class="g_id_signin" 
-             data-type="standard" 
-             data-size="large" 
-             data-theme="outline" 
-             data-text="signin_with" 
-             data-shape="rectangular" 
-             data-logo_alignment="left">
-        </div>
+    <div class="container">
+        <h1>Welcome to Frank's Website</h1>
+        <p>Explore my resume and projects once you sign in.</p>
         
         <!-- Greeting Message -->
         <div id="greeting" class="greeting hidden"></div>
@@ -100,13 +108,13 @@
         <!-- Resume Section -->
         <div id="resume-section" class="section hidden">
             <h2>Resume</h2>
-            <a href="https://drive.google.com/file/d/1VaPYWcJxwm-EfC_mA7XM04yuWHvqK3HQ/view?usp=sharing" target="_blank" class="resume-button">Download My Resume</a>
+            <a href="[your_resume_link_here]" target="_blank" class="resume-button">Download My Resume</a>
         </div>
 
         <!-- Personal Info Section -->
         <div id="personal-info" class="section hidden">
             <h2>About Me</h2>
-            <p>Hi, I'm [Your Name], a web developer passionate about creating engaging and interactive experiences. 
+            <p>Hi, I'm Frank, a web developer passionate about creating engaging and interactive experiences. 
                I specialize in front-end development and thrive on projects that bring together design and functionality.</p>
 
             <h2>Projects</h2>
@@ -152,11 +160,12 @@
                 client_id: '18205523567-9bbvcafd2cc4c13nnb3336sntspmuogd.apps.googleusercontent.com',
                 callback: handleCredentialResponse
             });
-            google.accounts.id.renderButton(
-                document.querySelector('.g_id_signin'),
-                { theme: 'outline', size: 'large' }
-            );
-            google.accounts.id.prompt(); // Optional
+
+            // Render button only when clicked
+            const signinButton = document.getElementById('signin-button');
+            signinButton.onclick = function() {
+                google.accounts.id.prompt(); // Show Google sign-in prompt
+            };
         };
     </script>
 </body>
