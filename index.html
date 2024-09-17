@@ -88,18 +88,20 @@
     <!-- Navbar with sign-in option -->
     <div class="navbar">
         <h1>Frank's Website</h1>
-        <div id="g_id_onload"
-             data-client_id="YOUR_GOOGLE_CLIENT_ID"
-             data-login_uri="https://your-backend.com/oauth2callback"
-             data-auto_prompt="false">
-        </div>
-        <div id="signin-button" class="g_id_signin" 
-             data-type="standard" 
-             data-size="large" 
-             data-theme="outline" 
-             data-text="signin_with" 
-             data-shape="rectangular" 
-             data-logo_alignment="left">
+        <div id="signin-area">
+            <div id="g_id_onload"
+                 data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                 data-login_uri="https://your-backend.com/oauth2callback"
+                 data-auto_prompt="false">
+            </div>
+            <div id="signin-button" class="g_id_signin" 
+                 data-type="standard" 
+                 data-size="large" 
+                 data-theme="outline" 
+                 data-text="signin_with" 
+                 data-shape="rectangular" 
+                 data-logo_alignment="left">
+            </div>
         </div>
     </div>
 
@@ -116,7 +118,7 @@
         <!-- Personal Info Section -->
         <div id="personal-info" class="section">
             <h2>About Me</h2>
-            <p>Hi, I'm Frank, a undergrad sophomore at UMBC. I plan on majoring in computer science with a minor in biology. I plan on attenting graudate school to expand my bioinformatics skills.</p>
+            <p>Hi, I'm Frank, an undergrad sophomore at UMBC. I plan on majoring in computer science with a minor in biology. I plan on attending graduate school to expand my bioinformatics skills.</p>
 
             <h2>Projects</h2>
             <ul>
@@ -134,11 +136,9 @@
             // Decode the JWT token to extract user information
             const userObject = parseJwt(response.credential);
 
-            // Update the UI to greet the user by name
-            const navbar = document.querySelector('.navbar h1');
-            navbar.textContent = `Hello, ${userObject.name}`;
-
-            // Optionally, you can save user information and perform other actions here
+            // Replace the Sign In button with the user's name
+            const signinArea = document.getElementById('signin-area');
+            signinArea.innerHTML = `<span style="color:white;">Welcome, ${userObject.name}</span>`;
         }
 
         // Function to decode JWT token
