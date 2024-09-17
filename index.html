@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Website</title>
+    <title>Frank Hayden Leo's Portfolio</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,13 +15,13 @@
             background-color: #f4f4f4;
             flex-direction: column;
         }
-        .welcome-container {
+        .container {
             text-align: center;
             background-color: white;
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
+            max-width: 800px;
             width: 100%;
         }
         h1 {
@@ -38,25 +38,46 @@
         .hidden {
             display: none;
         }
-        .personal-info {
+        .section {
             margin-top: 30px;
             text-align: left;
         }
-        .personal-info h2 {
+        .section h2 {
             color: #333;
         }
-        .personal-info p {
+        .section p, .section ul {
             font-size: 18px;
             line-height: 1.6;
+        }
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .section ul li {
+            background: #f4f4f4;
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 4px solid #4CAF50;
+        }
+        .resume-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .resume-button:hover {
+            background-color: #45a049;
         }
     </style>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 
-    <div class="welcome-container">
-        <h1>Welcome to My Personal Website</h1>
-        <p>Please sign in with your Google account to view my content.</p>
+    <div class="container">
+        <h1>Welcome to [Your Name]'s Portfolio</h1>
+        <p>Sign in with Google to view my resume and projects.</p>
 
         <!-- Google Sign-In button -->
         <div id="g_id_onload"
@@ -76,18 +97,23 @@
         <!-- Greeting Message -->
         <div id="greeting" class="greeting hidden"></div>
 
-        <!-- Personal Info Section -->
-        <div id="personal-info" class="personal-info hidden">
-            <h2>About Me</h2>
-            <p>Hi, I'm [Your Name], a web developer with a passion for creating interactive and dynamic web experiences. 
-               I specialize in front-end development, and I love working on projects that bring together design and functionality.</p>
+        <!-- Resume Section -->
+        <div id="resume-section" class="section hidden">
+            <h2>Resume</h2>
+            <a href="https://drive.google.com/file/d/1VaPYWcJxwm-EfC_mA7XM04yuWHvqK3HQ/view?usp=sharing" target="_blank" class="resume-button">Download My Resume</a>
+        </div>
 
-            <h2>My Projects</h2>
-            <p>Check out some of my recent projects:</p>
+        <!-- Personal Info Section -->
+        <div id="personal-info" class="section hidden">
+            <h2>About Me</h2>
+            <p>Hi, I'm [Your Name], a web developer passionate about creating engaging and interactive experiences. 
+               I specialize in front-end development and thrive on projects that bring together design and functionality.</p>
+
+            <h2>Projects</h2>
             <ul>
-                <li><strong>Project 1:</strong> A web application for task management.</li>
-                <li><strong>Project 2:</strong> An interactive data visualization tool.</li>
-                <li><strong>Project 3:</strong> A personal portfolio website with a dynamic theme.</li>
+                <li><strong>Project 1:</strong> A task management web app that helps users organize their workflow.</li>
+                <li><strong>Project 2:</strong> An interactive data visualization tool for analyzing large datasets.</li>
+                <li><strong>Project 3:</strong> A portfolio website with dynamic theming and modern UI/UX design.</li>
             </ul>
         </div>
     </div>
@@ -102,12 +128,12 @@
 
             // Update the UI to greet the user by name
             const greetingElement = document.getElementById('greeting');
-            greetingElement.textContent = "Hello, " + userObject.name + "! Welcome to my website.";
+            greetingElement.textContent = "Hello, " + userObject.name + "! Welcome to my portfolio.";
             greetingElement.classList.remove('hidden');
 
-            // Show personal information section
-            const personalInfo = document.getElementById('personal-info');
-            personalInfo.classList.remove('hidden');
+            // Show resume and personal information sections
+            document.getElementById('resume-section').classList.remove('hidden');
+            document.getElementById('personal-info').classList.remove('hidden');
         }
 
         // Function to decode the JWT token
